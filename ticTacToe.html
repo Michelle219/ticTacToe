@@ -6,9 +6,9 @@
 	</head>
 	<body>
 		<div id="gameBoard">
-			<button type="button" class="left" id="one000" onclick="pushed(this.id)"></button> 
-			<button type="button" id="two001" onclick="pushed(this.id)"></button>
-			<button type="button" id="three2" onclick="pushed(this.id)"></button>
+			<button type="button" class="left" id="one" onclick="pushed(this.id)"></button> 
+			<button type="button" id="two" onclick="pushed(this.id)"></button>
+			<button type="button" id="three" onclick="pushed(this.id)"></button>
 			</br>
 			<button type="button" class="left" id="four" onclick="pushed(this.id)"></button> 
 			<button type="button" id="five" onclick="pushed(this.id)"></button>
@@ -18,5 +18,22 @@
 			<button type="button" id = "eight" onclick="pushed(this.id)"></button>
 			<button type="button" id = "nine" onclick="pushed(this.id)"></button>
 		</div>
+
+		<div id="myModal" class="modal"> <!--The Modal-->		
+			<div class="modal-content"> <!-- Modal content -->
+				<div class="modal-header">
+					<span class="close">×</span>
+					<h2>Game Over!</h2>
+				</div>
+				<div class="modal-body">
+					<p>Player number <span id="num"></span> wins!</p>
+					<p></p>
+				</div>
+				<div class="modal-footer">
+					<h3>Play Again? </h3>
+				</div>
+			</div> <!--modal content end -->
+		</div> <!-- The modal end -->
+		<script src=modalBox.js></script
 	</body>
 </html>
