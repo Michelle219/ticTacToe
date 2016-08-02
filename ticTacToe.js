@@ -1,8 +1,7 @@
-
-
 //global varriables
 var playerOne = {status:true, color:"#ff726a", number:1};
 var playerTwo = {status:false, color:"#B7D0DF", number:2};
+var gameOver = false;
 var gameArray = [];
 
 function initArray(){ 
@@ -11,6 +10,8 @@ function initArray(){
 }
 
 function pushed (string){
+	if (gameOver)
+		alert("this game is over..")
 	if (gameArray[stringToNum(string)-1]!=0)
 		alert("this place is occupied");
 	else {
@@ -29,7 +30,8 @@ function pushed (string){
 	}
 	if (checkWin()){
 		modal.style.display = "block";
-		document.getElementById("end").innerHTML = "Player number "
+		document.getElementById("end").innerHTML = "Player number ";
+		gameOver = true;
 		if (playerOne.status==false)
 			document.getElementById("num").innerHTML = playerOne.number;
 		else
@@ -37,6 +39,7 @@ function pushed (string){
 	}
 	if (isTie()){
 		modal.style.display = "block";
+		gameOver = "true";
 		document.getElementById("end").innerHTML = "Haha! you both lose.. It's a tie"
 		document.getElementById("num").innerHTML = "";
 	}
