@@ -28,12 +28,17 @@ function pushed (string){
 		}
 	}
 	if (checkWin()){
-		alert("win");
 		modal.style.display = "block";
+		document.getElementById("end").innerHTML = "Player number "
 		if (playerOne.status==false)
 			document.getElementById("num").innerHTML = playerOne.number;
 		else
 			document.getElementById("num").innerHTML = playerTwo.number;
+	}
+	if (isTie()){
+		modal.style.display = "block";
+		document.getElementById("end").innerHTML = "Haha! you both lose.. It's a tie"
+		document.getElementById("num").innerHTML = "";
 	}
 }
 
@@ -76,4 +81,13 @@ function checkWin () {
 		return false;
 }
 
+function isTie ()  {
+	var count = 0;
+	for (var i=0; i<gameArray.length; i++)
+		if (gameArray[i]!=0)
+			count++;
+	if (count==9)
+		return true;
+	return false;
+}
 initArray();
