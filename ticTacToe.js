@@ -1,33 +1,43 @@
+
+
 //global varriables
-var playerOne = {status:true, color:"#ff726a"};
-var playerTwo = {status:false, color:"#B7D0DF"};
+var playerOne = {status:true, color:"#ff726a", number:1};
+var playerTwo = {status:false, color:"#B7D0DF", number:2};
 var gameArray = [];
 
 function initArray(){ 
 	for (var i=0; i<9; i++)
-		gameArray[i]=false;
+		gameArray[i]=0;
 }
 
 function pushed (string){
-	if (gameArray[stringToNum(string)-1]==true)
+	if (gameArray[stringToNum(string)-1]!=0)
 		alert("this place is occupied");
 	else {
 		if(playerOne.status==true){
 			document.getElementById(string).style.backgroundColor=playerOne.color;
-			gameArray[stringToNum(string)-1]=true;
+			gameArray[stringToNum(string)-1]=1;
 			playerOne.status = false;
 			playerTwo.status = true;
 		}
 		else {
 			document.getElementById(string).style.backgroundColor=playerTwo.color;
-			gameArray[stringToNum(string)-1]=true;
+			gameArray[stringToNum(string)-1]=2;
 			playerOne.status = true;
 			playerTwo.status = false;
 		}
 	}
+	if (checkWin()){
+		alert("win");
+		modal.style.display = "block";
+		if (playerOne.status==false)
+			document.getElementById("num").innerHTML = playerOne.number;
+		else
+			document.getElementById("num").innerHTML = playerTwo.number;
+	}
 }
 
-var numbers = {
+var numbers = { //used to translate words to numbers
     'one': 1,
     'two': 2,
     'three': 3,
@@ -43,5 +53,27 @@ function stringToNum (string) {
 	return numbers[string];
 }
 
+function checkWin () {
+	//checks horizontal lines
+		if (gameArray[0]==gameArray[1]&&gameArray[1]==gameArray[2]&&gameArray[0]!=0)
+			return true;
+		if (gameArray[3]==gameArray[4]&&gameArray[4]==gameArray[5]&&gameArray[3]!=0)
+			return true;
+		if (gameArray[6]==gameArray[7]&&gameArray[7]==gameArray[8]&&gameArray[6]!=0)
+			return true;
+	//check vertical lines
+		if (gameArray[0]==gameArray[3]&&gameArray[3]==gameArray[6]&&gameArray[0]!=0)
+			return true;
+		if (gameArray[1]==gameArray[4]&&gameArray[4]==gameArray[7]&&gameArray[1]!=0)
+			return true;
+		if (gameArray[2]==gameArray[5]&&gameArray[5]==gameArray[8]&&gameArray[2]!=0)
+			return true;
+	//check diagonal lines
+		if (gameArray[0]==gameArray[4]&&gameArray[4]==gameArray[8]&&gameArray[4]!=0)
+			return true;
+		if (gameArray[2]==gameArray[4]&&gameArray[4]==gameArray[6]&&gameArray[4]!=0)
+			return true;
+		return false;
+}
 
 initArray();
