@@ -10,8 +10,10 @@ function initArray(){
 }
 
 function pushed (string){
-	if (gameOver)
+	if (gameOver){
 		alert("this game is over..")
+		return true; //just to get out of the function
+		}
 	if (gameArray[stringToNum(string)-1]!=0)
 		alert("this place is occupied");
 	else {
