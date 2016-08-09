@@ -42,7 +42,7 @@ function pushed (string){
 	if (isTie()){
 		modal.style.display = "block";
 		gameOver = "true";
-		document.getElementById("end").innerHTML = "Haha! you both lose.. It's a tie"
+		document.getElementById("end").innerHTML = "Haha! you both lose.. It's a draw"
 		document.getElementById("num").innerHTML = "";
 	}
 }
@@ -64,26 +64,28 @@ function stringToNum (string) {
 }
 
 function checkWin () {
-	//checks horizontal lines
-		if (gameArray[0]==gameArray[1]&&gameArray[1]==gameArray[2]&&gameArray[0]!=0)
-			return true;
-		if (gameArray[3]==gameArray[4]&&gameArray[4]==gameArray[5]&&gameArray[3]!=0)
-			return true;
-		if (gameArray[6]==gameArray[7]&&gameArray[7]==gameArray[8]&&gameArray[6]!=0)
-			return true;
-	//check vertical lines
-		if (gameArray[0]==gameArray[3]&&gameArray[3]==gameArray[6]&&gameArray[0]!=0)
-			return true;
-		if (gameArray[1]==gameArray[4]&&gameArray[4]==gameArray[7]&&gameArray[1]!=0)
-			return true;
-		if (gameArray[2]==gameArray[5]&&gameArray[5]==gameArray[8]&&gameArray[2]!=0)
-			return true;
-	//check diagonal lines
-		if (gameArray[0]==gameArray[4]&&gameArray[4]==gameArray[8]&&gameArray[4]!=0)
-			return true;
-		if (gameArray[2]==gameArray[4]&&gameArray[4]==gameArray[6]&&gameArray[4]!=0)
-			return true;
-		return false;
+	var B = gameArray;
+	//checks rows
+		for(var i = 0; i <= 6; i = i + 3) {
+            if(B[i] !== 0 && B[i] === B[i + 1] && B[i + 1] === B[i + 2]) {
+             //   state.result ="over"; //update the state result
+                return true;
+            }
+        }
+	//check columns
+		for(var i = 0; i <= 2 ; i++) {
+            if(B[i] !== 0 && B[i] === B[i + 3] && B[i + 3] === B[i + 6]) {
+              //  state.result ="over"; //update the state result
+                return true;
+            }
+        }
+	//check diagonals
+		for(var i = 0, j = 4; i <= 2 ; i = i + 2, j = j - 2) {
+            if(B[i] !== 0 && B[i] == B[i + j] && B[i + j] === B[i + 2*j]) {
+               // state.result = "over"; //update the state result
+                return true;
+            }
+        }
 }
 
 function isTie ()  {
@@ -91,7 +93,7 @@ function isTie ()  {
 	for (var i=0; i<gameArray.length; i++)
 		if (gameArray[i]!=0)
 			count++;
-	if (count==9)
+	if (count==9&&!checkWin)
 		return true;
 	return false;
 }
