@@ -30,7 +30,7 @@ function pushed (string){
 			playerTwo.status = false;
 		}
 	}
-	if (checkWin()){
+	if (checkWin(gameArray)){
 		modal.style.display = "block";
 		document.getElementById("end").innerHTML = "Player number ";
 		gameOver = true;
@@ -63,8 +63,12 @@ function stringToNum (string) {
 	return numbers[string];
 }
 
+<<<<<<< HEAD
 function checkWin () {
 	var B = gameArray;
+=======
+function checkWin (B) {
+>>>>>>> refs/remotes/origin/master
 	//checks rows
 		for(var i = 0; i <= 6; i = i + 3) {
             if(B[i] !== 0 && B[i] === B[i + 1] && B[i + 1] === B[i + 2]) {
@@ -93,8 +97,20 @@ function isTie ()  {
 	for (var i=0; i<gameArray.length; i++)
 		if (gameArray[i]!=0)
 			count++;
+<<<<<<< HEAD
 	if (count==9&&!checkWin)
+=======
+	if (count==9&&!checkWin(gameArray))
+>>>>>>> refs/remotes/origin/master
 		return true;
 	return false;
 }
-initArray();
+
+function onePlayerGame(){
+	
+}
+
+function twoPlayersGame(){
+	 document.getElementById("gameBoard").style.display='block';
+	initArray();
+}
