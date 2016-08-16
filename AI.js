@@ -29,6 +29,7 @@ var state = function(old) {
         }
         return indxs; 
     }
+<<<<<<< HEAD
 	
 	//1.5 - check terminal -->ticTacToe.js
 	
@@ -41,4 +42,7 @@ var state = function(old) {
 	}
 		
 
+=======
+}
+>>>>>>> refs/remotes/origin/AI
 	
