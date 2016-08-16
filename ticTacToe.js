@@ -96,4 +96,12 @@ function isTie ()  {
 		return true;
 	return false;
 }
-initArray();
+
+function onePlayerGame(){
+	
+}
+
+function twoPlayersGame(){
+	 document.getElementById("gameBoard").style.display='block';
+	initArray();
+}

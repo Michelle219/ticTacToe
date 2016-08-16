@@ -17,9 +17,28 @@ h1 {
 	color:#29638d;
 }
 
+#gameBoard {
+	display:none;
+}
+
 .left {
 	 border-left-width:7px;
 	 margin-left:410px;
+}
+
+.type {
+	width:170px;
+	height: 55px;
+	background-color:#a1c8f6;
+	border-color:#a1c8f6;
+	margin-left:410px;
+	font-size:20pt;
+	font-family:Comic Sans MS;
+	text-align:center;
+	margin-left:410px;
+	margin-top:5px;
+	border-right-width:0px;
+    border-left-width:0px;
 }
 
 /* The Modal (background) */
