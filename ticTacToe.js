@@ -19,7 +19,7 @@ function pushed (string){
 		alert("this place is occupied");
 	else {
 		if (mode===2){
-			if(game.currentState.turn===1){
+			if(playerOne.status==true){
 				document.getElementById(string).style.backgroundColor=playerOne.color;
 				gameArray[stringToNum(string)-1]=1;
 				playerOne.status = false;
