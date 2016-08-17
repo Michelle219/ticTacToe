@@ -1,42 +1,8 @@
-//a state department that gets the old state
-	var state = function(old) {
-		this.turn=0; // the player who should play
-		this.compMoveCount = 0; //number of moves the AI player did
-		this.result = "still running";
-		this.board = [];
-		//Object Construction
-		if(typeof old !== "undefined") { 
-			// if the state is constructed using a copy of another state
-			var len = old.board.length;
-			this.board = new Array(len);
-			for(var i = 0 ; i < len ; i++) {
-				this.board[i] = old.board[i];
-			}
-			this.compMoveCount = old.compMoveCount;
-			this.result = old.result;
-			this.turn = old.turn;
-		}	
-		
-		this.advanceTurn = function() {
-			this.turn = this.turn === 1 ? 2 : 1;//if this.turn=1 return 2 else return 1, shortcut
-		}
-		
-		this.emptyCells = function() {  //create an empty cell array
-			var indxs = [];
-			for(var i = 0; i < 9 ; i++) {
-				if(this.board[i] === 0) 
-					indxs.push(i);
-			}
-			return indxs; 
-		}
-
-}
-
-function insertAIMove (randomCell){
+/*function insertAIMove (randomCell){
 	document.getElementById(numToString(randomCell)).style.backgroundColor=playerTwo.color;
 	playerOne.status = true;
 	playerTwo.status = false;
-}
+}*/
 
 //-----AI part-----
 
@@ -127,19 +93,20 @@ function insertAIMove (randomCell){
 		var action = new AIAction(randomCell);
 		var next = action.applyTo(game.currentState);
 		//UI
-		insertAIMove(randomCell);
+		//insertAIMove(randomCell);
 		game.advanceTo(next);
 	}
 	
 	//novice move: mix between choosing the optimal and suboptimal minimax decisions
 	function noviceMove(turn){
+		if(turn ===2){
 		var available = game.currentState.emptyCells();
 		var availableActions = available.map(function(place) {
 			var action =  new AIAction(place); //create the action object
 			var nextState = action.applyTo(game.currentState);
 			action.minimaxVal = minimaxValue(nextState);
 			return action;
-    });
+		});}
     //sort the enumerated actions list by score
     if(turn === 1)
         //human maximizes --> decend sort the actions to have the maximum minimax at first
@@ -159,7 +126,7 @@ function insertAIMove (randomCell){
             chosenAction = availableActions[0];
     }
     var next = chosenAction.applyTo(game.currentState);
-	insertAIMove(chosenAction.movePosition);
+	//insertAIMove(chosenAction.movePosition);
     game.advanceTo(next);
 	}
 	
@@ -183,7 +150,7 @@ function insertAIMove (randomCell){
     var chosenAction = availableActions[0];
     var next = chosenAction.applyTo(game.currentState);	
     //UI
-	insertAIMove(chosenAction.movePosition);
+	//insertAIMove(chosenAction.movePosition);
     // take the game to the next state
     game.advanceTo(next);
 	}

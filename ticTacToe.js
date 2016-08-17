@@ -19,19 +19,18 @@ function pushed (string){
 		alert("this place is occupied");
 	else {
 		if (mode===2){
-		
-		if(playerOne.status==true){
-			document.getElementById(string).style.backgroundColor=playerOne.color;
-			gameArray[stringToNum(string)-1]=1;
-			playerOne.status = false;
-			playerTwo.status = true;
-		}
+			if(game.currentState.turn===1){
+				document.getElementById(string).style.backgroundColor=playerOne.color;
+				gameArray[stringToNum(string)-1]=1;
+				playerOne.status = false;
+				playerTwo.status = true;
+			}
 		else {
-			document.getElementById(string).style.backgroundColor=playerTwo.color;
-			gameArray[stringToNum(string)-1]=2;
-			playerOne.status = true;
-			playerTwo.status = false;
-		}
+				document.getElementById(string).style.backgroundColor=playerTwo.color;
+				gameArray[stringToNum(string)-1]=2;
+				playerOne.status = true;
+				playerTwo.status = false;
+			}
 	  }
 	  if(mode===1&&game.currentState.turn ===1){
 		document.getElementById(string).style.backgroundColor=playerOne.color;
@@ -50,30 +49,13 @@ function pushed (string){
 		else
 			document.getElementById("num").innerHTML = playerTwo.number;
 	}
-	if (isTie()){
+	if (isTie(gameArray)){
 		modal.style.display = "block";
 		gameOver = "true";
 		document.getElementById("end").innerHTML = "Haha! you both lose.. It's a draw"
 		document.getElementById("num").innerHTML = "";
 	}
 	
-}
-
-function gameScore (state) {
-    if(state.result !== "still running") {
-        if(state.result === "1-won"){
-            // the human player won
-            return 10 - state.compMoveCount;
-        }
-        else if(state.result === "2-won") {
-            //the human player lost
-            return -10 + state.compMoveCount;
-        }
-        else {
-            //it's a draw
-            return 0;
-        }
-    }
 }
 
 var numbers = { //used to translate words to numbers
@@ -133,63 +115,16 @@ function checkWin (B) {
         }
 }
 
-function isTie ()  {
+function isTie (B)  {
 	var count = 0;
-	for (var i=0; i<gameArray.length; i++)
-		if (gameArray[i]!=0)
+	for (var i=0; i<B.length; i++)
+		if (B[i]!=0)
 			count++;
-	if (count==9&&!checkWin(gameArray))
+	if (count==9&&!checkWin(B)) 
 		return true;
 	return false;
 }
 
-var Game = function(autoPlayer) {
-    this.ai = autoPlayer;
-    this.currentState = new State();
-	this.currentState.board = [];
-	initArray(this.currentState.board);
-    this.currentState.turn = 1;
-    this.status = "beginning";
-	
-    this.advanceTo = function(_state) {
-        this.currentState = _state;
-        if(checkWin(_state.board)) {
-            this.status = "ended";
-			modal.style.display = "block";
-			document.getElementById("end").innerHTML = "Player number ";
-			gameOver = true;
-            if(_state.result === "1-won")
-				document.getElementById("num").innerHTML = playerOne.number;
-            else if(_state.result === "2-won")
-                document.getElementById("num").innerHTML = playerTwo.number;
-            else {
-				document.getElementById("end").innerHTML = "Haha! you both lose.. It's a draw"
-				document.getElementById("num").innerHTML = "";
-			}
-        }
-		else {
-			this.ai.notify(2);
-		}
-    };
-
-     //starts the game
-    this.start = function() {
-        if(this.status = "beginning") {
-            //invoke advanceTo with the intial state
-            this.advanceTo(this.currentState);
-            this.status = "running";
-        }
-    }
-}; 
-
-function onePlayerGame(){
-	mode =1;
-	var difficulty = "blind";
-	var aiPlayer = new AI(difficulty);
-    game = new Game(aiPlayer);
-    aiPlayer.plays(game);
-	game.start();
-}
 
 function twoPlayersGame(){
 	document.getElementById("gameBoard").style.display='block';
