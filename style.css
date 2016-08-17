@@ -12,12 +12,16 @@ button {
 
 h1 {
 	text-align:center;
-	font-family: Arial;
+	font-family: Tahoma;
 	font-size: 30pt;
 	color:#29638d;
 }
 
 #gameBoard {
+	display:none;
+}
+
+#difficulty {
 	display:none;
 }
 
@@ -33,12 +37,24 @@ h1 {
 	border-color:#a1c8f6;
 	margin-left:410px;
 	font-size:20pt;
-	font-family:Comic Sans MS;
+	font-family:Tahoma;
 	text-align:center;
 	margin-left:410px;
 	margin-top:5px;
 	border-right-width:0px;
     border-left-width:0px;
+}
+
+.difficulty {
+	width:90px;
+	height: 40px;
+	background-color:#aeddf5;
+	border-color:#aeddf5;
+	font-size:15pt;
+	font-family:Tahoma;
+	text-align:center;
+	margin-left:20px;
+	margin-top:15px;
 }
 
 /* The Modal (background) */

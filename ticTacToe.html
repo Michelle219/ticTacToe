@@ -3,6 +3,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<title>Tic Tac Toe</title>
 		<script src= "ticTacToe.js"> </script>
+		<script src= "AI.js"> </script>
 	</head>
 	<body>
 		<h1>Tic Tac Toe </h1>
@@ -19,9 +20,15 @@
 			<button type="button"  id = "eight" onclick="pushed(this.id)"></button>
 			<button type="button"  id = "nine" onclick="pushed(this.id)"></button>
 		</div>	
-		<button type ="button" class="type">One Player</button>
+		<div id="gameVersion">
+		<button type ="button" class="type" onclick="onePlayerGame()">One Player</button>
 		<button style="margin-left:105px;" type ="button" class="type" onclick="twoPlayersGame()">Two Players</button>
-		<div style="width:inherit;height:auto;"> <!--footer-->
+		<button style="margin-left:345px; type ="button" class="difficulty">Blind</button>
+		<button type ="button" class="difficulty">Novice</button>
+		<button type ="button" class="difficulty">Master</button>
+		</div>
+
+		<div style="width:inherit;height:auto; display:none;"> <!--footer-->
 				<h4>©Michal Michelle Guttman</h4>
 		</div>
 		<div id="myModal" class="modal"> <!--The Modal (end of the game)-->		
@@ -40,6 +47,6 @@
 				</div>
 			</div> <!--modal content end -->
 		</div> <!-- The modal end -->
-		<script src=modalBox.js></script
+		<script src=modalBox.js></script>
 	</body>
 </html>
