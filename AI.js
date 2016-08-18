@@ -1,8 +1,8 @@
-/*function insertAIMove (randomCell){
+function insertAIMove (randomCell){
 	document.getElementById(numToString(randomCell)).style.backgroundColor=playerTwo.color;
 	playerOne.status = true;
 	playerTwo.status = false;
-}*/
+}
 
 //-----AI part-----
 
@@ -93,7 +93,7 @@
 		var action = new AIAction(randomCell);
 		var next = action.applyTo(game.currentState);
 		//UI
-		//insertAIMove(randomCell);
+		insertAIMove(randomCell);
 		game.advanceTo(next);
 	}
 	
@@ -161,10 +161,12 @@
 
      //public function: notify the ai player that it's its turn
     this.notify = function(turn) {
+		if(turn===2){
         switch(levelOfIntelligence) {
             case "blind": blindMove(turn); break;
             case "novice": noviceMove(turn); break;
             case "master": masterMove(turn); break;
+		}
         }
     };
 };

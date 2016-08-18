@@ -62,7 +62,7 @@ var Game = function(autoPlayer) {
 	
     this.advanceTo = function(_state) {
         this.currentState = _state;
-        if(checkWin(_state.board)) {
+        if(checkWin(game.currentState.board)) {
             this.status = "ended";
 			modal.style.display = "block";
 			document.getElementById("end").innerHTML = "Player number ";
@@ -77,8 +77,10 @@ var Game = function(autoPlayer) {
 			}
         }
 		else {
+			if(this.currentState.turn ===2){
 			alert("hey");
 			this.ai.notify(2);
+			}
 		}
     };
 

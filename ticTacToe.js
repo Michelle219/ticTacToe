@@ -15,10 +15,11 @@ function pushed (string){
 		alert("this game is over..")
 		return true; //just to get out of the function
 		}
-	if (gameArray[stringToNum(string)-1]!=0)
-		alert("this place is occupied");
 	else {
 		if (mode===2){
+			if (gameArray[stringToNum(string)-1]!=0)
+				alert("this place is occupied");
+			else {
 			if(playerOne.status==true){
 				document.getElementById(string).style.backgroundColor=playerOne.color;
 				gameArray[stringToNum(string)-1]=1;
@@ -31,31 +32,31 @@ function pushed (string){
 				playerOne.status = true;
 				playerTwo.status = false;
 			}
+		if (checkWin(gameArray)){
+			modal.style.display = "block";
+			document.getElementById("end").innerHTML = "Player number ";
+			gameOver = true;
+			if (playerOne.status==false)
+				document.getElementById("num").innerHTML = playerOne.number;
+			else
+				document.getElementById("num").innerHTML = playerTwo.number;
+		}
+		if (isTie(gameArray)){
+			modal.style.display = "block";
+			gameOver = "true";
+			document.getElementById("end").innerHTML = "Haha! you both lose.. It's a draw"
+			document.getElementById("num").innerHTML = "";
+		}
+			}
 	  }
-	  if(mode===1&&game.currentState.turn ===1){
+	  if(mode===1&&game.currentState.turn ===1&&game.currentState.board[stringToNum(string)-1]==0){
 		document.getElementById(string).style.backgroundColor=playerOne.color;
 		var next = new State(game.currentState);
         next.board[stringToNum(string)-1] = 1;
 		next.advanceTurn();
         game.advanceTo(next);
 	  }
-	}
-	if (checkWin(gameArray)){
-		modal.style.display = "block";
-		document.getElementById("end").innerHTML = "Player number ";
-		gameOver = true;
-		if (playerOne.status==false)
-			document.getElementById("num").innerHTML = playerOne.number;
-		else
-			document.getElementById("num").innerHTML = playerTwo.number;
-	}
-	if (isTie(gameArray)){
-		modal.style.display = "block";
-		gameOver = "true";
-		document.getElementById("end").innerHTML = "Haha! you both lose.. It's a draw"
-		document.getElementById("num").innerHTML = "";
-	}
-	
+	}	
 }
 
 var numbers = { //used to translate words to numbers
